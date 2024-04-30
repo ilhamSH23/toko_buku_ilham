@@ -35,7 +35,20 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<?php
+session_start();
 
+if (isset($_POST['submit'])) {
+    include '../../config/database.php';
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (empty($username) || empty($password)) {
+        $pesan_error = "Username atau password harus di isi.";
+    }
+}
+?>
 <body>
 
   <main>
@@ -51,7 +64,7 @@
                   <img src="assets/img/logo.png" alt="">
                   <span class="d-none d-lg-block">NiceAdmin</span>
                 </a> -->
-              </div><!-- End Logo -->
+              <!-- </div>End Logo -->
 
               <div class="card mb-3">
 
@@ -86,8 +99,17 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" type="submit" name="submit">Login</button>
                     </div>
+
+                    <?php if (isset($pesan_error)): ?>
+                <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                  <p class="text-sm text-red-600 dark:text-red-400">
+                    <?php echo $pesan_error; ?>
+                  </p>
+                </div>
+              <?php endif; ?>
+
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
                     </div>
