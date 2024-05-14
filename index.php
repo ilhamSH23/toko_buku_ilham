@@ -19,8 +19,14 @@ require_once 'layout/header.php';
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="/page/buku/buku1.php">
-          
+
           <span>Buku</span>
+        </a>
+        </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/page/buku/penjualan.php">
+          <span>Penjualan</span>
         </a>
         </li>
 
@@ -31,14 +37,6 @@ require_once 'layout/header.php';
         </a>
         </li>
 
-      
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
-        </a>
-      </li>
       
 
       <div class="row">

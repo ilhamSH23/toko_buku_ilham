@@ -39,6 +39,10 @@ $hs = mysqli_fetch_all($result, MYSQLI_ASSOC);
       <td><?=$item['penerbit']?></td>
       <td><?=$item['stok']?></td>
       <td><?=$item['harga_jual']?></td>
+      <td>
+      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-warning">Edit</button>
+      </td>
     </tr>
     <?php 
       $nomor++;
