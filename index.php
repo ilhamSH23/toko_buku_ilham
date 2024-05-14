@@ -54,7 +54,7 @@ require_once 'layout/header.php';
       </div>
     </section>
 
-  </main>End #main 
+  </main>
 
   <?php
 require_once 'layout/footer.php';
