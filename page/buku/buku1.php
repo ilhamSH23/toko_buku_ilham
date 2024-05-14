@@ -1,12 +1,18 @@
-
 <?php
 require_once '../../layout/header.php';
-?>
-
-<?php
 include '../../config/database.php';
-$hs = "SELECT * FROM buku LIMIT 10";
 
+$query = "SELECT * FROM buku LIMIT 10";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+
+    echo "Error: " . mysqli_error($conn);
+    exit;
+}
+
+
+$hs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <table class="table">
@@ -23,23 +29,21 @@ $hs = "SELECT * FROM buku LIMIT 10";
   </thead>
   <tbody>
     <?php
-    $i = $halaman >1 ? ($halaman- 1)*10 + 1 : 1;
-    foreach ($item as $item):
+    $nomor = 1;
+    foreach ($hs as $item){
     ?>
-   <tr>
-      <th scope="row"><?= $i ?></th>
-      <td><?=$item ['Judul']?></td>
-      <td><?=$item ['penulis']?></td>
-      <td><?=$item ['penerbit']?></td>
-      <td><?=$item ['stok']?></td>
-      <td><?=$item ['harga_jual']?></td>   
+    <tr>
+      <th scope="row"><?= $nomor ?></th>
+      <td><?=$item['judul']?></td>
+      <td><?=$item['penulis']?></td>
+      <td><?=$item['penerbit']?></td>
+      <td><?=$item['stok']?></td>
+      <td><?=$item['harga_jual']?></td>
     </tr>
-
-   <?php
-
-   $i = 1;
-   foreach ($hasil as $data);
-   ?>
+    <?php 
+      $nomor++;
+    }
+    ?>
   </tbody>
 </table>
 

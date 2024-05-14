@@ -4,7 +4,7 @@ require_once 'layout/header.php';
 
 
 
-  <!-- ======= Sidebar ======= -->
+
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -18,8 +18,8 @@ require_once 'layout/header.php';
       </li>End Icons Nav 
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/page/buku/index.php">
-          <!-- <i class="bi bi-grid"></i> -->
+        <a class="nav-link collapsed" href="/page/buku/buku1.php">
+          
           <span>Buku</span>
         </a>
         </li>
@@ -31,7 +31,7 @@ require_once 'layout/header.php';
         </a>
         </li>
 
-      <!-- </li>End Contact Page Nav -->
+      
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-register.html">
@@ -39,28 +39,18 @@ require_once 'layout/header.php';
           <span>Register</span>
         </a>
       </li>
-      <!-- </li>End Register Page Nav -->
+      
 
       <div class="row">
         <div class="col-lg-6">
 
-          <!-- <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div> -->
+        
 
         </div>
 
         <div class="col-lg-6">
 
-          <!-- <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div> -->
+          
 
         </div>
       </div>
