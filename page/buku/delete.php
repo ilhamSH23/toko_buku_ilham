@@ -1,23 +1,8 @@
 <?php
-include '../../config/database.php';
+    include '../../config/database.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
+    $hapus = "delete from buku where id_buku=". $_GET['id'];
+    $conn -> query($hapus);
+    header('location: buku1.php');
 
-    if (empty($id_buku)) {
-        echo "ID buku tidak valid.";
-        exit;
-    }
-
-    $query = "DELETE FROM buku WHERE id_buku = $id";
-
-    if (mysqli_query($conn, $query)) {
-        header('Location: buku1.php');
-        exit;
-    } else {
-        echo "Error: " . mysqli_error($conn);
-    }
-}
-
-mysqli_close($conn);
 ?>

@@ -40,8 +40,7 @@ $hs = mysqli_fetch_all($result, MYSQLI_ASSOC);
       <td><?=$item['stok']?></td>
       <td><?=$item['harga_jual']?></td>
       <td>
-      <button type="button" class="btn btn-danger">Delete</button>
-      <button type="button" class="btn btn-warning">Edit</button>
+        <a href="delete.php?id=<?= $item['id_buku'] ?>" class="btn btn-danger">Hapus</a>
       </td>
     </tr>
     <?php 
