@@ -11,6 +11,10 @@ $buku = [];
 while ($baris = $hasil->fetch_assoc()) {
     $buku[] = $baris;
 }
+
+if (isset($_POST["submit"])) {
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +29,7 @@ while ($baris = $hasil->fetch_assoc()) {
 
 <body>
     <div class="container ">
-        <form>
+        <form action="" method="post">
             <fieldset>
                 <legend>Penjualan</legend>
                 <div class="d-flex justify-content-between">
@@ -35,7 +39,7 @@ while ($baris = $hasil->fetch_assoc()) {
                     </div>
                     <div class="mb-3">
                         <label for="text" class="form-label">Total</label>
-                        <input type="text" name="text" id="disabledTextInput" class="form-control" placeholder="911">
+                        <input type="text" name="total" id="total" class="form-control" value="0">
                     </div>
                 </div>
 
@@ -48,29 +52,33 @@ while ($baris = $hasil->fetch_assoc()) {
                         <th scope="col">Penerbit</th>
                         <th scope="col">Harga</th>
                         <th scope="col">Jumlah</th>
+                        <th scope="col">diskon</th>
                         <th scope="col">Subtotal</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" id="buku" class="form-control"></td>
-                        <td><input type="text" id="judul" class="form-control"></td>
-                        <td><input type="text" id="penerbit" class="form-control"></td>
-                        <td><input type="text" id="harga" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
-                        <td><input type="text" class="form-control"></td>
+                <tbody id="tb">
+                    <tr id="tabel">
+                        <td><input type="text" id="buku" name="kode_buku" class="form-control"></td>
+                        <td><input type="text" id="judul" name="judul" class="form-control"></td>
+                        <td><input type="text" id="penerbit" name="penerbit" class="form-control"></td>
+                        <td><input type="text" id="harga" name="harga" class="form-control"></td>
+                        <td><input type="text" id="jumlah" name="jumlah" value="1" class="form-control"></td>
+                        <td><input type="text" id="diskon" name="diskon" class="form-control"></td>
+                        <td><input type="text" id="subtotal" name="subtotal" class="form-control"></td>
                     </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" id="tambah" class="btn btn-primary">Tambah</button>
+            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
+
     </div>
 
     <script src="../../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <script>
-        let data_buku=<?=json_encode($buku)?>
-     
+    <!-- <script>
+        let data_buku = <?= json_encode($buku) ?>
+
         // cara 1
         // buku.onkeyup=function(){
         //     alert(buku.value)
@@ -80,12 +88,44 @@ while ($baris = $hasil->fetch_assoc()) {
         document.getElementById("buku").onkeyup = function() {
             // simpan id yang di input user
             let id_buku = buku.value;
+            console.log(id_buku)
             // cari index buku dari id yang di masukan
-            let chossenbuku = data_buku.findIndex(e=>e.id_buku == id_buku);
-            judul.value=data_buku[chossenbuku].judul;    
-
+            let chossenbuku = data_buku.findIndex(e => e.id_buku == id_buku);
+            console.log(chossenbuku)
+            // judul.value=data_buku[chossenbuku].judul;    
+            console.log(data_buku[chossenbuku])
         }
-        
+    </script> -->
+
+    <script>
+        let tambah = document.getElementById("tambah");
+
+        tambah.onclick = function() {
+            let tb = document.getElementById("tb");
+            let tabel = document.getElementById("tabel");
+            let barisbaru = tabel.cloneNode(true);
+
+            barisbaru.querySelectorAll("input").forEach(input => {
+                input.value = ""
+            });;
+
+            tb.appendChild(barisbaru)
+        }
+
+        let data_buku = <?php echo json_encode($buku); ?>
+
+        document.getElementById("buku").onkeyup = function() {
+            document.getElementById("judul").value = data_buku[this.value].judul;
+            document.getElementById("penerbit").value = data_buku[this.value].penerbit;
+            document.getElementById("harga").value = data_buku[this.value].harga_jual;
+            document.getElementById("diskon").value = data_buku[this.value].diskon;
+            document.getElementById("subtotal").value = document.getElementById("harga").value * this.value - document.getElementById("diskon").value;
+            document.getElementById("total").value = parseInt(document.getElementById("total").value) + parseInt(document.getElementById("subtotal").value)
+        }
+        document.getElementById("jumlah").onkeyup = function() {
+            // document.getElementById("total").value = parseInt(document.getElementById("total").value) + parseInt(document.getElementById("subtotal").value)
+            document.getElementById("subtotal").value = document.getElementById("harga").value * this.value - document.getElementById("diskon").value;
+        }
     </script>
 </body>
 
